@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import {Controller, Get} from '@nestjs/common';
+import {AppService} from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) {
+  }
 
   @Get()
   getHello(): string {
@@ -11,65 +12,181 @@ export class AppController {
   }
 }
 
-const texto: string = "";
-const comillaSimple: string = '';
-const entero: number = 1;
-const float: number = 1.2;
-const estudiante: boolean = true;
-const fecha: Date = new Date();
-const noDefinido = undefined;
-const nulo = null;
-
-class Usuario {
-    constructor(public nombre: string,
-                public apellido: string) {
-
+// Clases - TYPESCRIPT
+/**
+ abstract class Nombre {
+    public nombrePropiedad?: string; // undefined
+    private apellidoPropiedad: string = 'Eguez';
+    protected edad = 1; // number (Duck Typing)
+    static comun: number = 10;
+    propiedadPublica: string;
+    constructor(
+        propiedadPublicaParametro: string, // parametro
+        public propiedadRapido: string, // transforma una propiedad
+    ) {
+        this.propiedadPublica = propiedadPublicaParametro;
+        // this.propiedadPublicaParametro ERROR
+        // this.propiedadRapido; OK
+    }
+    public funcionPublica(parametroString: string): void {
+        // no hay return = undefined
+    }
+    private funcionPrivada(parametroString: string, // ? = puede ser undefined
+                           parametroNumber?: number)  { // omitir :void (defecto)
+        // no hay return = undefined
+    }
+    protected funcionPublica(): number {
+        return 1;
+    }
+    static funcionEstatica(): string {
+        return 'string';
     }
 }
+ */
+// VARIABLES PRIMITIVAS
 
+// MUTABLES (REASIGNAR "=")
+// var variableUno
 
+/*
+let variableDos = 3;
+variableDos = 1; // OK
+// INMUTABLES (NO PUEDEN SER REASIGNADAS "=")
+const variableTres = 2;
+variableTres = 1; // NO OK
+*/
+
+// Tipos de variables
+
+/*
+const texto: string = '';
+const textoConComillasSimples: string = '';
+const numeroEntero: number = 1;
+const numeroFlotante: number = 1.2;
+const soyEstudiante: boolean = true; // false
+const fecha: Date = new Date();
+const noDefinido = undefined;
+const noHayNada = null;
+class Usuario {
+    constructor(
+        public nombre: string,
+        public apellido: string
+    ) {
+    }
+}
+const usuario: Usuario = new Usuario('Adrian', 'Eguez');
+usuario.nombre = 'Vicente';
+usuario.apellido = 'Sarzosa';
 interface UsuarioInterface {
     nombre: string;
     apellido: string;
-    edad?: number; //? opcional undefined
+    edad?: number; // ? => Opcional // Valor por defecto es undefined
 }
-
-
 let objetoUsuario: UsuarioInterface = {
-    nombre: 'Ramses',
-    apellido: 'Paredes'
-}
-
+    nombre: 'Adrian',
+    apellido: 'Eguez'
+};
 objetoUsuario.nombre;
 objetoUsuario.apellido;
 objetoUsuario.edad;
-
-//console.log(objetoUsuario);
-
-let a ={
-    edad:22
+console.log(usuario);
+console.log(objetoUsuario);
+// PUNTEROS REFERENCIAS
+// PRIMITIVAS
+let edadAntigua = 22;
+let otraEdad = edadAntigua; // VALOR
+otraEdad = 60; // edadAntigua = 22; OK
+// Objeto
+let objetoEdad = {
+    edad: 22,
+};
+let otraEdadObjeto = objetoEdad; // REFERENCIA
+otraEdadObjeto.edad = 60;
+console.log('objetoEdad', objetoEdad)
+console.log('otraEdadObjeto', otraEdadObjeto)
+objetoEdad.edad = 35;
+console.log('objetoEdad', objetoEdad)
+console.log('otraEdadObjeto', otraEdadObjeto)
+let otraEdadObjetoClonado = {...objetoEdad}; // Clonación
+otraEdadObjetoClonado.edad = 60;
+console.log('objetoEdad', objetoEdad)
+console.log('otraEdadObjetoClonado', otraEdadObjetoClonado)
+objetoEdad.edad = 40;
+console.log('objetoEdad', objetoEdad)
+console.log('otraEdadObjetoClonado', otraEdadObjetoClonado)
+// Arreglos
+const arregloTodo = [1, '', true, null, new Date()];
+const arregloNumeros: number[] = [1, 2, 3, 4, 5];
+const arregloNumerosClonado: number[] = [...arregloNumeros];
+const indice = arregloNumeros.findIndex(
+    (numero) => { // Funcion Anonima xq no tiene nombre
+        const elValorEsIgualAtres: boolean = numero === 3;
+        return elValorEsIgualAtres  // Condicion -> boolean
+    },
+    // function () { -> Funcion Anonima xq no tiene nombre
+    //
+    // }
+);
+arregloNumeros[indice] = 6
+// agregar al final
+arregloNumeros.push(6)
+// agregar al principio
+arregloNumeros.unshift(0)
+console.log(arregloNumeros);
+// CONDICIONES -> Truty y Falsy
+if (0) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
 }
-
-let b=a;
-let c={...a}
-
-b.edad=60;
-c.edad=100;
-
-//console.log("A:",a.edad)
-//console.log("B:",b.edad)
-//console.log("C:",c.edad)
-
-
-
-const array1=[1,"ss",null,new Date()]
-const array2:number[]=[1,2,3,4,5]
-const array3:number[]=[...array2,100]
-
-console.log("array1:",array1)
-console.log("array2:",array2)
-console.log("array3:",array3)
-console.log("array3Push:",array3.push(1))
-console.log("array3:",array3)
-console.log("array3Pop:",array3.pop())
-console.log("array3:",array3)
+if (1) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if (-1) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if ("") {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if ("a") {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if ({}) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if ({a:1}) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if ([]) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if ([1]) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if (null) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+if (undefined) {
+    console.log('Truty');
+} else {
+    console.log('Falsy');
+}
+*/
