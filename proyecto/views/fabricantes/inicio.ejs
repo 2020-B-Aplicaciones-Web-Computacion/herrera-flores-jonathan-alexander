@@ -1,0 +1,72 @@
+<form action="/fabricante/fabricantes" method="get">
+    <label for="busqueda">Búsqueda</label>
+    <input id="busqueda" type="text" name="busqueda">
+
+    <button type="submit">
+        Buscar
+    </button>
+</form>
+
+<style>
+    .mensaje {
+        border: solid 1px #c3a062;
+        width: 100%;
+    }
+</style>
+
+<% if(parametrosConsulta.mensaje){ %>
+    <div class="mensaje">
+        <%= parametrosConsulta.mensaje %>
+    </div>
+<% } %>
+
+<a href="/fabricante/crear-fabricante">
+    <button>CREAR</button>
+</a>
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+        <th>Fundación</th>
+        <th>Presidente</th>
+        <th>Ingresos</th>
+        <th>Empleados</th>
+    </tr>
+    <% for (let fabricante of datos[0]){ %>
+    <% let fk = fabricante.id%>
+        <% let id = fabricante.id %>
+
+        <tr>
+
+            <td><%= fabricante.nombre %></td>
+
+            <td><%= fabricante.ubicacion %></td>
+            <td><%= fabricante.fundacion %></td>
+            <td><%= fabricante.presidente %></td>
+            <td><%= fabricante.ingresos %></td>
+            <td><%= fabricante.empleados %></td>
+            <td>
+                <a href="/fabricante/editar?id=<%=id%>">
+                    <button>Editar</button>
+                </a>
+                <a href="/fabricante/eliminar?id=<%=id%>">
+                    <button>Eliminar</button>
+                </a>
+                <a href="/procesador/procesadores?fabricante=<%=fk%>">
+                    <button>Procesadores</button>
+                </a>
+            </td>
+        </tr>
+
+    <% } %>
+</table>
+
+<% if(page>1){%>
+<a href="/fabricante/fabricantes?page=<%=page-1%>">
+    <button>PREVIOUS</button>
+</a>
+<%}%>
+<a href="/fabricante/fabricantes?page=<%=page+1%>">
+    <button>NEXT</button>
+</a>

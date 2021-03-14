@@ -1,0 +1,27 @@
+<% let fabricante = datos %>
+<form action="/fabricante/editar?id=<%= params.id %>" method="post">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" name="nombre" placeholder="<%= fabricante.nombre %>">
+    <br>
+    <label for="ubicacion">Ubicación</label>
+    <input id="ubicacion" type="text" name="ubicacion" placeholder="<%= fabricante.ubicacion %>">
+    <br>
+    <label for="fundacion">Fundación</label>
+    <input id="fundacion" type="text" name="fundacion" placeholder="<%= fabricante.fundacion %>">
+    <br>
+    <label for="presidente">Presidente</label>
+    <input id="presidente" type="text" name="presidente" placeholder="<%= fabricante.presidente %>">
+    <br>
+    <label for="ingresos">Ingresos</label>
+    <input id="ingresos" type="text" name="ingresos" placeholder="<%= fabricante.ingresos %>">
+    <br>
+    <label for="empleados">Empleados</label>
+    <input id="empleados" type="text" name="empleados" placeholder="<%= fabricante.empleados %>">
+    <br>
+
+    <button type="submit">Modificar</button>
+    <button type="reset">Reset</button>
+</form>
+<a href="/fabricante/fabricantes">
+    <button>Cancelar</button>
+</a>

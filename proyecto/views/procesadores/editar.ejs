@@ -1,0 +1,24 @@
+<% let procesador = datos %>
+<form action="/procesador/editar?id=<%= params.id %>" method="post">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" name="nombre" placeholder="<%= procesador.nombre %>">
+    <br>
+    <label for="lanzamiento">Lanzamiento</label>
+    <input id="lanzamiento" type="text" name="lanzamiento" placeholder="<%= procesador.lanzamiento %>">
+    <br>
+    <label for="arquitectura">Arquitectura</label>
+    <input id="arquitectura" type="text" name="arquitectura" placeholder="<%= procesador.arquitectura %>">
+    <br>
+    <label for="zocalo">Zócalo</label>
+    <input id="zocalo" type="text" name="zocalo" placeholder="<%= procesador.zocalo %>">
+    <br>
+    <label for="nucleos">Núcleos</label>
+    <input id="nucleos" type="text" name="nucleos" placeholder="<%= procesador.nucleos %>">
+    <br>
+
+    <button type="submit">Modificar</button>
+    <button type="reset">Reset</button>
+</form>
+<a href="/procesador/procesadores">
+    <button>Cancelar</button>
+</a>

@@ -1,0 +1,66 @@
+<form action="/procesador/procesadores" method="get">
+    <label for="busqueda">Búsqueda</label>
+    <input id="busqueda" type="text" name="busqueda">
+
+    <button type="submit">
+        Buscar
+    </button>
+</form>
+
+<style>
+    .mensaje {
+        border: solid 1px #c3a062;
+        width: 100%;
+    }
+</style>
+
+<% if(parametrosConsulta.mensaje){ %>
+    <div class="mensaje">
+        <%= parametrosConsulta.mensaje %>
+    </div>
+<% } %>
+
+
+<a href="/procesador/crear-procesador">
+    <button>CREAR</button>
+</a>
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Lanzamiento</th>
+        <th>Arquitectura</th>
+        <th>Zócalo</th>
+        <th>Núcleos</th>
+    </tr>
+    <% for (let procesador of datos[0]){ %>
+        <% let id = procesador.id %>
+        <tr>
+            <td><%= procesador.nombre %></td>
+            <td><%= procesador.lanzamiento %></td>
+            <td><%= procesador.arquitectura %></td>
+            <td><%= procesador.zocalo %></td>
+            <td><%= procesador.nucleos %></td>
+            <td>
+                <a href="/procesador/editar?id=<%= id %>">
+                    <button>Editar</button>
+                </a>
+                <a href="/procesador/eliminar?id=<%= id %>">
+                    <button>Eliminar</button>
+                </a>
+            </td>
+        </tr>
+    <% } %>
+</table>
+<% if(page > 1){ %>
+    <a href="/procesador/procesadores?fabricante=<%=parametrosConsulta.fabricante%>&&page=<%= page - 1 %>">
+        <button>PREVIOUS</button>
+    </a>
+<% } %>
+<a href="/procesador/procesadores?fabricante=<%=parametrosConsulta.fabricante%>&&page=<%= page + 1 %>">
+    <button>NEXT</button>
+</a>
+<br>
+<a href="/fabricante/fabricantes">
+    <button>VOLVER A FABRICANTES</button>
+</a>
