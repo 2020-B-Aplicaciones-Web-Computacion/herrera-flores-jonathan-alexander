@@ -1,9 +1,9 @@
 import {
-  BadRequestException,
+  BadRequestException, Body,
   Controller,
   ForbiddenException,
   Get,
-  Param,
+  Param, Post,
   Query,
   Req,
   Res,
@@ -15,6 +15,7 @@ import {AppService} from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {
   }
+
   @Get()
   getHello(
       @Res()

@@ -1,11 +1,15 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {ProcesadorEntity} from "../procesador/procesador.entity";
+import {IsNotEmpty, IsString, Length} from "class-validator";
 
 @Entity('FABRICANTE')
 export class FabricanteEntity {
     @PrimaryGeneratedColumn()
     id: number
 
+    @Length(5,100)
+    @IsString()
+    @IsNotEmpty()
     @Column({
         type: 'varchar',
         length: 100,
@@ -14,6 +18,9 @@ export class FabricanteEntity {
     })
     nombre: string
 
+    @Length(5,100)
+    @IsString()
+    @IsNotEmpty()
     @Column({
         type:'varchar',
         length: 100,
@@ -22,6 +29,9 @@ export class FabricanteEntity {
     })
     ubicacion: string
 
+    @Length(5,100)
+    @IsString()
+    @IsNotEmpty()
     @Column({
         type:'varchar',
         length: 100,
@@ -30,6 +40,9 @@ export class FabricanteEntity {
     })
     fundacion: string
 
+    @Length(5,100)
+    @IsString()
+    @IsNotEmpty()
     @Column({
         type:'varchar',
         length: 100,
@@ -38,6 +51,9 @@ export class FabricanteEntity {
     })
     presidente: string
 
+    @Length(5,100)
+    @IsString()
+    @IsNotEmpty()
     @Column({
         type:'varchar',
         length: 100,
@@ -46,6 +62,9 @@ export class FabricanteEntity {
     })
     ingresos: string
 
+    @Length(5,100)
+    @IsString()
+    @IsNotEmpty()
     @Column({
         type:'varchar',
         length: 100,
